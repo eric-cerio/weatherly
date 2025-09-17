@@ -3,11 +3,13 @@ package com.ericcerio.weather.utils
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import java.util.Calendar
 import java.util.Locale
+import java.util.TimeZone
 
 object DateUtils {
 
-    fun formatUnixToReadableDate(unixTimestamp: Long): String {
+    fun formatToReadableDate(unixTimestamp: Long): String {
         val instant = Instant.ofEpochSecond(unixTimestamp)
         val zoneId = ZoneId.of("Asia/Manila")
 
@@ -17,7 +19,7 @@ object DateUtils {
         return formatter.format(instant)
     }
 
-    fun formatUnixToReadableTime(unixTimestamp: Long): String {
+    fun formatToReadableTime(unixTimestamp: Long): String {
         val instant = Instant.ofEpochSecond(unixTimestamp)
         val zoneId = ZoneId.of("Asia/Manila")
 
@@ -25,5 +27,12 @@ object DateUtils {
             .withZone(zoneId)
 
         return formatter.format(instant)
+    }
+
+    // Helper to get hour from unix timestamp
+    fun getHour(unixTime: Long): Int {
+        val calendar = Calendar.getInstance(TimeZone.getDefault())
+        calendar.timeInMillis = unixTime * 1000 // Convert seconds to ms
+        return calendar.get(Calendar.HOUR_OF_DAY)
     }
 }

@@ -1,5 +1,6 @@
 package com.ericcerio.weather.presentation.weather.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,7 +13,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.WaterDrop
 import androidx.compose.material.icons.filled.WbSunny
-import androidx.compose.material.icons.outlined.Brightness4
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -20,13 +20,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.ericcerio.weather.R
 import com.ericcerio.weather.domain.model.Weather
 import com.ericcerio.weather.presentation.ui.theme.WeatherAppTheme
 import com.ericcerio.weather.utils.DateUtils
+import com.ericcerio.weather.utils.dimensions.Paddings
+import com.ericcerio.weather.utils.dimensions.Size
 
 @Composable
 fun WeatherItemCard(data: Weather) {
@@ -39,21 +42,21 @@ fun WeatherItemCard(data: Weather) {
             )
     ) {
         Row(
-            modifier = Modifier.padding(12.dp),
+            modifier = Modifier.padding(Paddings.MEDIUM),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
                 imageVector = if (data.condition == "Rain") Icons.Default.WaterDrop else Icons.Default.WbSunny,
                 contentDescription = data.condition,
-                modifier = Modifier.size(40.dp)
+                modifier = Modifier.size(Size.XXXX_LARGE)
             )
 
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(Size.LARGE))
 
             Column(modifier = Modifier.weight(1f)) {
                 Text(text = data.city, fontWeight = FontWeight.Bold)
                 Text(
-                    text = DateUtils.formatUnixToReadableDate(data.dateTime),
+                    text = DateUtils.formatToReadableDate(data.dateTime),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -66,33 +69,31 @@ fun WeatherItemCard(data: Weather) {
         }
 
         Row(
-            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
+            modifier = Modifier.fillMaxWidth().padding(bottom = Paddings.LARGE),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Icon(
-                imageVector = Icons.Default.WbSunny,
-                contentDescription = "Sunrise",
-                modifier = Modifier.size(18.dp),
-                tint = Color(0xFFFFC107) // Amber color
+            Image(
+                painter = painterResource(R.drawable.ic_sunrise),
+                contentDescription = "Sunset",
+                modifier = Modifier.size(Size.X_LARGE),
             )
-            Spacer(modifier = Modifier.width(4.dp))
+            Spacer(modifier = Modifier.width(Size.MICRO))
             Text(
-                text = DateUtils.formatUnixToReadableTime(data.sunRise),
+                text = DateUtils.formatToReadableTime(data.sunRise),
                 style = MaterialTheme.typography.bodySmall
             )
 
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(Size.LARGE))
 
-            Icon(
-                imageVector = Icons.Outlined.Brightness4,
+            Image(
+                painter = painterResource(R.drawable.ic_sunset),
                 contentDescription = "Sunset",
-                modifier = Modifier.size(18.dp),
-                tint = Color(0xFF673AB7)
+                modifier = Modifier.size(Size.X_LARGE),
             )
-            Spacer(modifier = Modifier.width(4.dp))
+            Spacer(modifier = Modifier.width(Size.MICRO))
             Text(
-                text = DateUtils.formatUnixToReadableTime(data.sunSet),
+                text = DateUtils.formatToReadableTime(data.sunSet),
                 style = MaterialTheme.typography.bodySmall
             )
         }

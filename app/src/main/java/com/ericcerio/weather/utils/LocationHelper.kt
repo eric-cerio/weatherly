@@ -1,13 +1,10 @@
 package com.ericcerio.weather.utils
 
 import android.Manifest
-import android.app.Activity
 import android.content.Context
-import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Looper
 import androidx.annotation.RequiresPermission
-import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult

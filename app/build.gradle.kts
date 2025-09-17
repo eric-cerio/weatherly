@@ -76,6 +76,9 @@ dependencies {
     // retrofit
     implementation(libs.retrofit)
 
+    // OkHttp Logging Interceptor
+    implementation(libs.logging.interceptor)
+
     // GSON
     implementation(libs.converter.gson)
 
@@ -86,6 +89,7 @@ dependencies {
     // Room
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.play.services.location)
     ksp(libs.androidx.room.compiler)
 
     // Navigation
@@ -110,6 +114,9 @@ dependencies {
 
     // system UI Controller
     implementation(libs.accompanist.systemuicontroller)
+
+    // Location
+    implementation(libs.google.location)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
