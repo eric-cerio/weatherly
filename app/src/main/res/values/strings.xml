@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">WeatherApp</string>
+    <string name="sunset">Sunset</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="no_weather_data_available">No weather data available.</string>
+    <string name="saved_weather_data">Saved Weather Data</string>
 </resources>

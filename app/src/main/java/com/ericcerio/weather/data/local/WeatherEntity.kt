@@ -6,8 +6,9 @@ import com.ericcerio.weather.domain.model.Weather
 
 @Entity(tableName = "weather_table")
 data class WeatherEntity(
-    @PrimaryKey
-    val id: Int = 0,
+    @PrimaryKey(autoGenerate = true)
+    val dbId: Int = 0,
+    val id: Int,
     val city: String,
     val country: String,
     val temperature: Double,

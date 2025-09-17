@@ -22,6 +22,7 @@ data class Weather(
 
     companion object {
         fun empty() = Weather(
+            id = 0,
             city = "",
             country = "",
             temperature = 0.0,

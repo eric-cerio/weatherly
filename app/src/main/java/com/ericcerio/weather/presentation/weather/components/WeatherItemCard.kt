@@ -1,7 +1,6 @@
 package com.ericcerio.weather.presentation.weather.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,20 +9,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.WaterDrop
-import androidx.compose.material.icons.filled.WbSunny
 import androidx.compose.material3.Card
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.ericcerio.weather.R
 import com.ericcerio.weather.domain.model.Weather
 import com.ericcerio.weather.presentation.ui.theme.WeatherAppTheme
@@ -36,17 +31,13 @@ fun WeatherItemCard(data: Weather) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .border(
-                width = 1.dp,
-                color = MaterialTheme.colorScheme.primary
-            )
     ) {
         Row(
             modifier = Modifier.padding(Paddings.MEDIUM),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Icon(
-                imageVector = if (data.condition == "Rain") Icons.Default.WaterDrop else Icons.Default.WbSunny,
+            Image(
+                painter = painterResource(data.getWeatherIcon(data.condition)),
                 contentDescription = data.condition,
                 modifier = Modifier.size(Size.XXXX_LARGE)
             )
@@ -63,19 +54,21 @@ fun WeatherItemCard(data: Weather) {
             }
 
             Text(
-                text = "${data.temperature}°C",
+                text = data.getCelsius(),
                 style = MaterialTheme.typography.titleLarge
             )
         }
 
         Row(
-            modifier = Modifier.fillMaxWidth().padding(bottom = Paddings.LARGE),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = Paddings.LARGE),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
                 painter = painterResource(R.drawable.ic_sunrise),
-                contentDescription = "Sunset",
+                contentDescription = stringResource(R.string.sunrise),
                 modifier = Modifier.size(Size.X_LARGE),
             )
             Spacer(modifier = Modifier.width(Size.MICRO))
@@ -88,7 +81,7 @@ fun WeatherItemCard(data: Weather) {
 
             Image(
                 painter = painterResource(R.drawable.ic_sunset),
-                contentDescription = "Sunset",
+                contentDescription = stringResource(R.string.sunset),
                 modifier = Modifier.size(Size.X_LARGE),
             )
             Spacer(modifier = Modifier.width(Size.MICRO))

@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -19,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -42,7 +44,10 @@ fun CurrentWeatherScreen(
     state: CurrentWeatherState
 ) {
     Column(
-        modifier = Modifier.fillMaxSize().padding(Paddings.LARGE),
+        modifier = Modifier
+            .fillMaxSize()
+            .statusBarsPadding()
+            .padding(Paddings.LARGE),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceAround
     ) {
@@ -94,18 +99,18 @@ fun CurrentWeatherScreen(
                     SunriseSunsetInfo(
                         icon = R.drawable.ic_sunrise,
                         time = DateUtils.formatToReadableTime(weather.sunRise),
-                        label = "Sunrise"
+                        label = stringResource(R.string.sunrise)
                     )
                     SunriseSunsetInfo(
                         icon = R.drawable.ic_sunset,
                         time = DateUtils.formatToReadableTime(weather.sunSet),
-                        label = "Sunset"
+                        label = stringResource(R.string.sunset)
                     )
                 }
             }
             else -> {
                 Text(
-                    text = "No weather data available.",
+                    text = stringResource(R.string.no_weather_data_available),
                     style = MaterialTheme.typography.titleLarge
                 )
             }
