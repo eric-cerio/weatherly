@@ -8,8 +8,8 @@ import androidx.room.Query
 @Dao
 interface WeatherDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertWeather(data: WeatherEntity)
+    fun insertWeather(data: WeatherEntity)
 
     @Query("SELECT * FROM weather_table")
-    suspend fun getAllSavedWeather(): List<WeatherEntity>
+    fun getAllSavedWeather(): List<WeatherEntity>
 }
