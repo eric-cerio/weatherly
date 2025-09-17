@@ -4,4 +4,6 @@
     <string name="sunrise">Sunrise</string>
     <string name="no_weather_data_available">No weather data available.</string>
     <string name="saved_weather_data">Saved Weather Data</string>
+    <string name="grant_permission">Grant Permission</string>
+    <string name="location_permission_is_required_to_get_weather_data">Location permission is required to get weather data.</string>
 </resources>
