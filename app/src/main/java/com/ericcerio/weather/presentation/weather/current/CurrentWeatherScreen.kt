@@ -51,6 +51,7 @@ fun CurrentWeatherScreen(
     val state by viewModel.weatherState
     var permissionsGranted by remember { mutableStateOf(false) }
     var permissionRequested by remember { mutableStateOf(false) }
+
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestMultiplePermissions(),
         onResult = { perms ->
@@ -69,11 +70,11 @@ fun CurrentWeatherScreen(
         )
     }
 
-    LaunchedEffect(permissionsGranted)
-    @androidx.annotation.RequiresPermission(allOf = [android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION])
-    {
+    LaunchedEffect(permissionsGranted) {
         if (permissionsGranted) {
             viewModel.fetchWeatherForDeviceLocation()
+        } else {
+            viewModel.getCurrentLocationWeather(10.3072, 123.898)
         }
     }
 
