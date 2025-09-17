@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.ericcerio.weather.presentation.ui.theme.WeatherAppTheme
 import com.ericcerio.weather.presentation.weather.current.CurrentWeatherScreen
+import com.ericcerio.weather.presentation.weather.previous.PreviousWeatherScreen
 import com.ericcerio.weather.utils.Screen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,17 +29,25 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    NavHost(
-                        navController = navController,
-                        startDestination = Screen.CurrentWeatherScreen.rout
-                    ) {
-                        composable(Screen.CurrentWeatherScreen.rout) {
-                            CurrentWeatherScreen()
+                    Column(modifier = Modifier.fillMaxSize()) {
+                        Box(modifier = Modifier.weight(1f)) {
+                            NavHost(
+                                navController = navController,
+                                startDestination = Screen.CurrentWeatherScreen.rout
+                            ) {
+                                composable(Screen.CurrentWeatherScreen.rout) {
+                                    CurrentWeatherScreen()
+                                }
+
+                                composable(Screen.PreviousWeatherScreen.rout) {
+                                    PreviousWeatherScreen()
+                                }
+                            }
                         }
+                        BottomNavBar(navController = navController)
                     }
                 }
             }
         }
     }
 }
-
