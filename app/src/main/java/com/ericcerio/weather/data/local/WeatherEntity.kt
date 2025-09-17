@@ -4,11 +4,11 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.ericcerio.weather.domain.model.Weather
 
-
 @Entity(tableName = "weather_table")
 data class WeatherEntity(
-    @PrimaryKey
-    val id: Int = 0,
+    @PrimaryKey(autoGenerate = true)
+    val dbId: Int = 0,
+    val id: Int,
     val city: String,
     val country: String,
     val temperature: Double,
@@ -17,7 +17,7 @@ data class WeatherEntity(
     val condition: String,
     val icon: String,
     val windSpeed: Double,
-    val currentTime: Int,
+    val dateTime: Long,
 )
 
 fun WeatherEntity.toDomain(): Weather {
@@ -26,11 +26,11 @@ fun WeatherEntity.toDomain(): Weather {
         city = this.city,
         country = this.country,
         temperature = this.temperature,
-        sunRise = this.sunRise.toInt(),
-        sunSet = this.sunSet.toInt(),
+        sunRise = this.sunRise,
+        sunSet = this.sunSet,
         condition = this.condition,
         icon = this.icon,
         windSpeed = this.windSpeed,
-        currentTime = this.currentTime
+        dateTime = this.dateTime,
     )
 }

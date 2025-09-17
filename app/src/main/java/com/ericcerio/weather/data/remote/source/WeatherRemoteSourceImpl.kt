@@ -6,9 +6,12 @@ import com.ericcerio.weather.domain.model.Weather
 import javax.inject.Inject
 
 class WeatherRemoteSourceImpl @Inject constructor(
-    private val weatherAPI: WeatherAPI
-): WeatherRemoteSource {
-    override suspend fun getWeatherByLatLong(latitude: Double, longitude: Double): Weather {
+    private val weatherAPI: WeatherAPI,
+) : WeatherRemoteSource {
+    override suspend fun getWeatherByLatLong(
+        latitude: Double,
+        longitude: Double,
+    ): Weather {
         return weatherAPI.getWeatherByLatLong(latitude, longitude).toDomain()
     }
 }

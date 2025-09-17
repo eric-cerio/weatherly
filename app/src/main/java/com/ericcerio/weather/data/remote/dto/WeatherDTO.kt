@@ -13,7 +13,7 @@ data class WeatherDTO(
     @SerializedName("coord")
     val coord: CoordDTO?,
     @SerializedName("dt")
-    val dt: Int?,
+    val dt: Long?,
     @SerializedName("id")
     val id: Int?,
     @SerializedName("main")
@@ -31,19 +31,19 @@ data class WeatherDTO(
     @SerializedName("weather")
     val weather: List<WeatherDetailsDTO?>?,
     @SerializedName("wind")
-    val wind: WindDTO?
+    val wind: WindDTO?,
 )
 
 data class CloudsDTO(
     @SerializedName("all")
-    val all: Int?
+    val all: Int?,
 )
 
 data class CoordDTO(
     @SerializedName("lat")
     val lat: Double?,
     @SerializedName("lon")
-    val lon: Double?
+    val lon: Double?,
 )
 
 data class MainDTO(
@@ -62,21 +62,21 @@ data class MainDTO(
     @SerializedName("temp_max")
     val tempMax: Double?,
     @SerializedName("temp_min")
-    val tempMin: Double?
+    val tempMin: Double?,
 )
 
 data class RainDTO(
     @SerializedName("1h")
-    val h: Double?
+    val h: Double?,
 )
 
 data class SysDTO(
     @SerializedName("country")
     val country: String?,
     @SerializedName("sunrise")
-    val sunrise: Int?,
+    val sunrise: Long?,
     @SerializedName("sunset")
-    val sunset: Int?
+    val sunset: Long?,
 )
 
 data class WeatherDetailsDTO(
@@ -87,7 +87,7 @@ data class WeatherDetailsDTO(
     @SerializedName("id")
     val id: Int?,
     @SerializedName("main")
-    val main: String?
+    val main: String?,
 )
 
 data class WindDTO(
@@ -96,11 +96,11 @@ data class WindDTO(
     @SerializedName("gust")
     val gust: Double?,
     @SerializedName("speed")
-    val speed: Double?
+    val speed: Double?,
 )
 
 fun WeatherDTO.toDomain(): Weather {
-    return Weather (
+    return Weather(
         id = this.weather?.get(0)?.id ?: 0,
         city = this.name ?: "",
         country = this.sys?.country ?: "",
@@ -110,9 +110,8 @@ fun WeatherDTO.toDomain(): Weather {
         condition = this.weather?.get(0)?.main ?: "",
         icon = this.weather?.get(0)?.icon ?: "",
         windSpeed = this.wind?.speed ?: 0.0,
-        currentTime = this.dt ?: 0,
+        dateTime = this.dt ?: 0,
     )
 }
-
 
 // app key = e1f2bc4da5ac3e6170583aa8b2f9ba9d
