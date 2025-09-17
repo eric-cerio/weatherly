@@ -13,7 +13,7 @@ data class WeatherDTO(
     @SerializedName("coord")
     val coord: CoordDTO?,
     @SerializedName("dt")
-    val dt: Int?,
+    val dt: Long?,
     @SerializedName("id")
     val id: Int?,
     @SerializedName("main")
@@ -74,9 +74,9 @@ data class SysDTO(
     @SerializedName("country")
     val country: String?,
     @SerializedName("sunrise")
-    val sunrise: Int?,
+    val sunrise: Long?,
     @SerializedName("sunset")
-    val sunset: Int?,
+    val sunset: Long?,
 )
 
 data class WeatherDetailsDTO(
@@ -110,7 +110,7 @@ fun WeatherDTO.toDomain(): Weather {
         condition = this.weather?.get(0)?.main ?: "",
         icon = this.weather?.get(0)?.icon ?: "",
         windSpeed = this.wind?.speed ?: 0.0,
-        currentTime = this.dt ?: 0,
+        dateTime = this.dt ?: 0,
     )
 }
 

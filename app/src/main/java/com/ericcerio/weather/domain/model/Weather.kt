@@ -7,12 +7,12 @@ data class Weather(
     val city: String,
     val country: String,
     val temperature: Double,
-    val sunRise: Int,
-    val sunSet: Int,
+    val sunRise: Long,
+    val sunSet: Long,
     val condition: String,
     val icon: String,
     val windSpeed: Double,
-    val currentTime: Int,
+    val dateTime: Long,
 ) {
     fun getCelsius(): Double {
         return temperature - 273.15
@@ -25,11 +25,11 @@ fun Weather.toEntity(): WeatherEntity {
         city = this.city,
         country = this.country,
         temperature = this.temperature,
-        sunRise = this.sunRise.toLong(),
-        sunSet = this.sunSet.toLong(),
+        sunRise = this.sunRise,
+        sunSet = this.sunSet,
         condition = this.condition,
         icon = this.icon,
         windSpeed = this.windSpeed,
-        currentTime = this.currentTime,
+        dateTime = this.dateTime,
     )
 }

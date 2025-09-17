@@ -16,7 +16,7 @@ data class WeatherEntity(
     val condition: String,
     val icon: String,
     val windSpeed: Double,
-    val currentTime: Int,
+    val dateTime: Long,
 )
 
 fun WeatherEntity.toDomain(): Weather {
@@ -25,11 +25,11 @@ fun WeatherEntity.toDomain(): Weather {
         city = this.city,
         country = this.country,
         temperature = this.temperature,
-        sunRise = this.sunRise.toInt(),
-        sunSet = this.sunSet.toInt(),
+        sunRise = this.sunRise,
+        sunSet = this.sunSet,
         condition = this.condition,
         icon = this.icon,
         windSpeed = this.windSpeed,
-        currentTime = this.currentTime,
+        dateTime = this.dateTime,
     )
 }
