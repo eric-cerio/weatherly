@@ -7,11 +7,11 @@ import javax.inject.Inject
 
 class WeatherRepositoryImpl @Inject constructor(
     private val remoteDataSource: WeatherRemoteSource,
-    private val localDataSource: WeatherLocalSource
-): WeatherRepository {
+    private val localDataSource: WeatherLocalSource,
+) : WeatherRepository {
     override suspend fun getCurrentLocationWeather(
         lat: Double,
-        long: Double
+        long: Double,
     ): Weather {
         return remoteDataSource.getWeatherByLatLong(lat, long)
     }
@@ -23,5 +23,4 @@ class WeatherRepositoryImpl @Inject constructor(
     override fun saveCurrentWeather(weather: Weather) {
         return localDataSource.saveWeather(weather)
     }
-
 }

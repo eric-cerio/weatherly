@@ -12,11 +12,9 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object RemoteSourceModule {
-
     @Provides
     @Singleton
-    fun provideWeatherRemoteSource(weatherAPI: WeatherAPI): WeatherRemoteSource  {
+    fun provideWeatherRemoteSource(weatherAPI: WeatherAPI): WeatherRemoteSource {
         return WeatherRemoteSourceImpl(weatherAPI)
     }
-
 }

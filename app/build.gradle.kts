@@ -5,6 +5,7 @@ plugins {
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     id("com.google.devtools.ksp") version "2.2.0-2.0.2"
+    alias(libs.plugins.ktlint)
 }
 
 apply(from = "../secret.gradle.kts")
@@ -29,12 +30,12 @@ android {
         buildConfigField(
             "String",
             "WEATHER_API_KEY",
-            "\"${project.extra["WEATHER_API_KEY"]}\""
+            "\"${project.extra["WEATHER_API_KEY"]}\"",
         )
         buildConfigField(
             "String",
             "WEATHER_BASE_URL",
-            "\"${project.extra["WEATHER_BASE_URL"]}\""
+            "\"${project.extra["WEATHER_BASE_URL"]}\"",
         )
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -45,7 +46,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -101,7 +102,7 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
 
-    //Hilt
+    // Hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
     ksp(libs.androidx.hilt.compiler)

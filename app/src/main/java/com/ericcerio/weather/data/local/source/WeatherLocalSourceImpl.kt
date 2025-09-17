@@ -7,8 +7,8 @@ import com.ericcerio.weather.domain.model.toEntity
 import javax.inject.Inject
 
 class WeatherLocalSourceImpl @Inject constructor(
-    private val weatherDao: WeatherDao
-): WeatherLocalSource {
+    private val weatherDao: WeatherDao,
+) : WeatherLocalSource {
     override fun saveWeather(weather: Weather) {
         return weatherDao.insertWeather(weather.toEntity())
     }

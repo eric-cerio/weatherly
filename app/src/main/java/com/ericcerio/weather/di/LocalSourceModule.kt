@@ -12,7 +12,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object LocalSourceModule {
-
     @Provides
     @Singleton
     fun provideWeatherLocalSource(weatherDao: WeatherDao): WeatherLocalSource {

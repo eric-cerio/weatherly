@@ -12,16 +12,13 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
     @Provides
     @Singleton
-    fun provideWeatherAPI(): WeatherAPI  {
+    fun provideWeatherAPI(): WeatherAPI {
         return Retrofit.Builder()
             .baseUrl("https://api.openweathermap.org/data/2.5")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(WeatherAPI::class.java)
     }
-
-
 }

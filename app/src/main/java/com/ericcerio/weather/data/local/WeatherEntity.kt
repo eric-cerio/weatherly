@@ -4,7 +4,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.ericcerio.weather.domain.model.Weather
 
-
 @Entity(tableName = "weather_table")
 data class WeatherEntity(
     @PrimaryKey
@@ -31,6 +30,6 @@ fun WeatherEntity.toDomain(): Weather {
         condition = this.condition,
         icon = this.icon,
         windSpeed = this.windSpeed,
-        currentTime = this.currentTime
+        currentTime = this.currentTime,
     )
 }

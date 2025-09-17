@@ -12,10 +12,9 @@ data class Weather(
     val condition: String,
     val icon: String,
     val windSpeed: Double,
-    val currentTime: Int
+    val currentTime: Int,
 ) {
-
-    fun  getCelsius(): Double {
+    fun getCelsius(): Double {
         return temperature - 273.15
     }
 }
@@ -31,6 +30,6 @@ fun Weather.toEntity(): WeatherEntity {
         condition = this.condition,
         icon = this.icon,
         windSpeed = this.windSpeed,
-        currentTime = this.currentTime
+        currentTime = this.currentTime,
     )
 }
