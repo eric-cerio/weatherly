@@ -25,8 +25,12 @@ class PreviousWeatherViewModel @Inject constructor(
 
     fun getAllSavedWeather() {
         viewModelScope.launch {
-            val result = getAllSavedWeatherUseCase.invoke()
-            _savedWeathers.value = result
+            try {
+                val result = getAllSavedWeatherUseCase.invoke()
+                _savedWeathers.value = result
+            } catch (e: Exception) {
+                _savedWeathers.value = emptyList()
+            }
         }
     }
 }
