@@ -1,6 +1,6 @@
 package com.ericcerio.weather.data.repository.auth
 
-import com.ericcerio.weather.presentation.auth.User
+import com.ericcerio.weather.domain.model.User
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor() : AuthRepository {
