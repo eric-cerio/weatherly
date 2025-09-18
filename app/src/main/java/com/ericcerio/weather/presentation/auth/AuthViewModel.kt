@@ -10,14 +10,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-sealed class AuthState {
-    object Idle : AuthState()
-    object RegisterSuccess : AuthState()
-    object RegisterFailed : AuthState()
-    object LoginSuccess : AuthState()
-    object LoginFailed : AuthState()
-}
-
 @HiltViewModel
 class AuthViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,

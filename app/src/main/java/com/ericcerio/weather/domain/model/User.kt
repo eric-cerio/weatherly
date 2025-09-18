@@ -1,4 +1,3 @@
-package com.ericcerio.weather.presentation.auth
+package com.ericcerio.weather.domain.model
 
 data class User(val username: String, val password: String)
-

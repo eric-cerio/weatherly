@@ -15,63 +15,6 @@ import com.ericcerio.weather.utils.dimensions.Size
 
 
 @Composable
-fun LoginScreen(
-    authState: AuthState,
-    onLoginSuccess: () -> Unit,
-    onNavigateToRegister: () -> Unit,
-    doLogin: (String, String) -> Unit,
-) {
-    var username by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-
-    LaunchedEffect(authState) {
-        if (authState is AuthState.LoginSuccess) {
-            onLoginSuccess()
-        }
-    }
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(32.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.app_icon),
-            contentDescription = "App Icon",
-            modifier = Modifier.size(96.dp)
-        )
-        Spacer(modifier = Modifier.height(Size.LARGE))
-        Text(stringResource(R.string.login), style = MaterialTheme.typography.headlineMedium)
-        Spacer(modifier = Modifier.height(Size.LARGE))
-        OutlinedTextField(
-            value = username,
-            onValueChange = { username = it },
-            label = { Text(stringResource(R.string.username)) }
-        )
-        Spacer(modifier = Modifier.height(Size.SMALL))
-        OutlinedTextField(
-            value = password,
-            onValueChange = { password = it },
-            label = { Text(stringResource(R.string.password)) },
-            visualTransformation = PasswordVisualTransformation()
-        )
-        Spacer(modifier = Modifier.height(Size.LARGE))
-        Button(onClick = { doLogin(username, password) }) {
-            Text(stringResource(R.string.login))
-        }
-        Spacer(modifier = Modifier.height(Size.SMALL))
-        TextButton(onClick = onNavigateToRegister) {
-            Text(stringResource(R.string.don_t_have_an_account_register))
-        }
-        if (authState is AuthState.LoginFailed) {
-            Text(stringResource(R.string.login_failed_try_again), color = MaterialTheme.colorScheme.error)
-        }
-    }
-}
-
-@Composable
 fun RegisterScreen(
     authState: AuthState,
     onRegisterSuccess: () -> Unit,
