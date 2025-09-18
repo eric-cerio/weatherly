@@ -21,7 +21,6 @@ fun LoginScreen(
     onNavigateToRegister: () -> Unit,
     doLogin: (String, String) -> Unit,
 ) {
-
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
