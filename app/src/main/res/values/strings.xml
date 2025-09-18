@@ -6,4 +6,12 @@
     <string name="saved_weather_data">Saved Weather Data</string>
     <string name="grant_permission">Grant Permission</string>
     <string name="location_permission_is_required_to_get_weather_data">Location permission is required to get weather data.</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="don_t_have_an_account_register">Don\'t have an account? Register</string>
+    <string name="login_failed_try_again">Login failed. Try again.</string>
+    <string name="register">Register</string>
+    <string name="already_have_an_account_login">Already have an account? Login</string>
+    <string name="registration_failed_username_taken">Registration failed. Username taken.</string>
 </resources>

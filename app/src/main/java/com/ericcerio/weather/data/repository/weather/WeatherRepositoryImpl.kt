@@ -1,4 +1,4 @@
-package com.ericcerio.weather.data.repository
+package com.ericcerio.weather.data.repository.weather
 
 import com.ericcerio.weather.data.local.source.WeatherLocalSource
 import com.ericcerio.weather.data.remote.source.WeatherRemoteSource
