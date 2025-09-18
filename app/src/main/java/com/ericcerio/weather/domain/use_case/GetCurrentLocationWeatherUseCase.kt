@@ -1,6 +1,7 @@
 package com.ericcerio.weather.domain.use_case
 
 import com.ericcerio.weather.data.repository.weather.WeatherRepository
+import com.ericcerio.weather.domain.model.Weather
 import com.ericcerio.weather.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
@@ -17,9 +18,10 @@ class GetCurrentLocationWeatherUseCase @Inject constructor(
     ) = flow {
         try {
             emit(Resource.Loading(true))
-            val weather = repository.getCurrentLocationWeather(lat, long)
-            // Save to DB on IO dispatcher
+            var weather = Weather.empty()
             withContext(Dispatchers.IO) {
+                val place = repository.getPlace(lat, long)
+                weather = repository.getCurrentLocationWeather(place.name)
                 repository.saveCurrentWeather(weather)
             }
             emit(Resource.Success(weather))
