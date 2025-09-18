@@ -10,20 +10,20 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.ericcerio.weather.R
 import com.ericcerio.weather.utils.dimensions.Size
 
 
 @Composable
 fun LoginScreen(
-    viewModel: AuthViewModel = hiltViewModel(),
+    authState: AuthState,
     onLoginSuccess: () -> Unit,
-    onNavigateToRegister: () -> Unit
+    onNavigateToRegister: () -> Unit,
+    doLogin: (String, String) -> Unit,
 ) {
+
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    val authState by viewModel.authState.collectAsState()
 
     LaunchedEffect(authState) {
         if (authState is AuthState.LoginSuccess) {
@@ -59,7 +59,7 @@ fun LoginScreen(
             visualTransformation = PasswordVisualTransformation()
         )
         Spacer(modifier = Modifier.height(Size.LARGE))
-        Button(onClick = { viewModel.login(username, password) }) {
+        Button(onClick = { doLogin(username, password) }) {
             Text(stringResource(R.string.login))
         }
         Spacer(modifier = Modifier.height(Size.SMALL))
@@ -74,13 +74,13 @@ fun LoginScreen(
 
 @Composable
 fun RegisterScreen(
-    viewModel: AuthViewModel = hiltViewModel(),
+    authState: AuthState,
     onRegisterSuccess: () -> Unit,
-    onNavigateToLogin: () -> Unit
+    onNavigateToLogin: () -> Unit,
+    doRegister: (String, String) -> Unit
 ) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    val authState by viewModel.authState.collectAsState()
 
     LaunchedEffect(authState) {
         if (authState is AuthState.RegisterSuccess) {
@@ -116,7 +116,7 @@ fun RegisterScreen(
             visualTransformation = PasswordVisualTransformation()
         )
         Spacer(modifier = Modifier.height(Size.LARGE))
-        Button(onClick = { viewModel.register(username, password) }) {
+        Button(onClick = { doRegister(username, password) }) {
             Text(stringResource(R.string.register))
         }
         Spacer(modifier = Modifier.height(Size.SMALL))
