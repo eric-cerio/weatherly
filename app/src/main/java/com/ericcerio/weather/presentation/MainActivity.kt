@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
                             ) {
                                 composable(Screen.LoginScreen.rout) {
                                     LoginScreen(
-                                        viewModel = authViewModel,
+                                        authState = authState,
                                         onLoginSuccess = {
                                             navController.navigate(Screen.CurrentWeatherScreen.rout) {
                                                 popUpTo(Screen.LoginScreen.rout) { inclusive = true }
@@ -53,12 +53,15 @@ class MainActivity : ComponentActivity() {
                                         },
                                         onNavigateToRegister = {
                                             navController.navigate(Screen.RegisterScreen.rout)
+                                        },
+                                        doLogin = { username, password ->
+                                            authViewModel.login(username, password)
                                         }
                                     )
                                 }
                                 composable(Screen.RegisterScreen.rout) {
                                     RegisterScreen(
-                                        viewModel = authViewModel,
+                                        authState = authState,
                                         onRegisterSuccess = {
                                             navController.navigate(Screen.LoginScreen.rout) {
                                                 popUpTo(Screen.RegisterScreen.rout) { inclusive = true }
@@ -66,6 +69,9 @@ class MainActivity : ComponentActivity() {
                                         },
                                         onNavigateToLogin = {
                                             navController.popBackStack()
+                                        },
+                                        doRegister = { username, password ->
+                                            authViewModel.register(username, password)
                                         }
                                     )
                                 }
