@@ -1,7 +1,7 @@
 package com.ericcerio.weather.domain.use_case
 
 import com.ericcerio.weather.domain.model.Weather
-import com.ericcerio.weather.data.repository.WeatherRepository
+import com.ericcerio.weather.data.repository.weather.WeatherRepository
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi

@@ -1,11 +1,14 @@
-package com.ericcerio.weather.data.repository
+package com.ericcerio.weather.data.repository.weather
 
+import com.ericcerio.weather.domain.model.Place
 import com.ericcerio.weather.domain.model.Weather
 
 interface WeatherRepository {
+
+    suspend fun getPlace(lat: Double, long: Double): Place
+
     suspend fun getCurrentLocationWeather(
-        lat: Double,
-        long: Double,
+        placeName: String
     ): Weather
 
     fun getSavedWeather(): List<Weather>

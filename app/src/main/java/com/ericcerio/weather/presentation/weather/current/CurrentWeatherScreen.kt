@@ -40,6 +40,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.ericcerio.weather.R
 import com.ericcerio.weather.presentation.ui.theme.WeatherAppTheme
 import com.ericcerio.weather.presentation.weather.components.SunriseSunsetInfo
+import com.ericcerio.weather.utils.CountryUtils
 import com.ericcerio.weather.utils.DateUtils
 import com.ericcerio.weather.utils.dimensions.Paddings
 
@@ -130,7 +131,7 @@ fun CurrentWeatherScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = weather.city,
+                        text = "${weather.city}, ${CountryUtils.getCountryNameFromCode(weather.country)}",
                         style = MaterialTheme.typography.headlineMedium
                     )
                     Spacer(modifier = Modifier.height(Paddings.MICRO))
